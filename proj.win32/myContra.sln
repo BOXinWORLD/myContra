@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "myContra", "myContra.vcxproj", "{76A39BB2-9B84-4C65-98A5-654D86B86F2A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9FB72041-38FD-478B-8214-CBDAB0CADF88} = {9FB72041-38FD-478B-8214-CBDAB0CADF88}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libcocos2d", "..\cocos2d\cocos\2d\libcocos2d.vcxproj", "{9FB72041-38FD-478B-8214-CBDAB0CADF88}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libbox2d", "..\cocos2d\external\Box2D\proj.win32\libbox2d.vcxproj", "{5A2010DA-6884-4C4D-AF3E-B0FF57AC5F90}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libSpine", "..\cocos2d\cocos\editor-support\spine\proj.win32\libSpine.vcxproj", "{47E739C4-E344-4A6E-92E0-4E38766D0AFF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libbullet", "..\cocos2d\external\bullet\proj.win32\libbullet.vcxproj", "{F588C169-A19E-4597-981F-19E9F86C2FBB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "librecast", "..\cocos2d\external\recast\proj.win32\librecast.vcxproj", "{A896858B-3D20-4176-B9FB-86DE5F0A09CD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{76A39BB2-9B84-4C65-98A5-654D86B86F2A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{76A39BB2-9B84-4C65-98A5-654D86B86F2A}.Debug|Win32.Build.0 = Debug|Win32
+		{76A39BB2-9B84-4C65-98A5-654D86B86F2A}.Release|Win32.ActiveCfg = Release|Win32
+		{76A39BB2-9B84-4C65-98A5-654D86B86F2A}.Release|Win32.Build.0 = Release|Win32
+		{9FB72041-38FD-478B-8214-CBDAB0CADF88}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9FB72041-38FD-478B-8214-CBDAB0CADF88}.Release|Win32.ActiveCfg = Release|Win32
+		{9FB72041-38FD-478B-8214-CBDAB0CADF88}.Release|Win32.Build.0 = Release|Win32
+		{5A2010DA-6884-4C4D-AF3E-B0FF57AC5F90}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5A2010DA-6884-4C4D-AF3E-B0FF57AC5F90}.Release|Win32.ActiveCfg = Release|Win32
+		{5A2010DA-6884-4C4D-AF3E-B0FF57AC5F90}.Release|Win32.Build.0 = Release|Win32
+		{47E739C4-E344-4A6E-92E0-4E38766D0AFF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{47E739C4-E344-4A6E-92E0-4E38766D0AFF}.Release|Win32.ActiveCfg = Release|Win32
+		{47E739C4-E344-4A6E-92E0-4E38766D0AFF}.Release|Win32.Build.0 = Release|Win32
+		{F588C169-A19E-4597-981F-19E9F86C2FBB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F588C169-A19E-4597-981F-19E9F86C2FBB}.Release|Win32.ActiveCfg = Release|Win32
+		{F588C169-A19E-4597-981F-19E9F86C2FBB}.Release|Win32.Build.0 = Release|Win32
+		{A896858B-3D20-4176-B9FB-86DE5F0A09CD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A896858B-3D20-4176-B9FB-86DE5F0A09CD}.Release|Win32.ActiveCfg = Release|Win32
+		{A896858B-3D20-4176-B9FB-86DE5F0A09CD}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
