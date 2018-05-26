@@ -32,3 +32,10 @@
 *.app
 myContra.sdf
 .vs
+cocos2d
+proj.android
+proj.android-studio
+proj.ios_mac
+proj.linux
+proj.tizen
+proj.win10
