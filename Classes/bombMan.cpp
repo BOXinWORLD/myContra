@@ -9,7 +9,6 @@ bool bombMan::init()
 	for (int i = 1; i < 4; i++) {
 		sprintf_s(txt, "tex\\bombman\\bombman_runleft000%d.png", i);
 		SpriteFrame *sf = SpriteFrame::create(txt, Rect(0, 0, 35, 48));
-		sf->setAnchorPoint(Vec2(0.3f, 0.35f));//不知道为何 动画偏移 强改锚点。。。。
 		allFrames.pushBack(sf);
 	}
 

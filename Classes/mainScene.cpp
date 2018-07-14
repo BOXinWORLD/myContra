@@ -31,7 +31,6 @@ bool mainScene::init()
 													 //根据实际宽度和总宽度，计算期望缩放比率  
 	//float scaleX = (float)514/ (float)size_back.width;
 	//float scaleY = (float)480 / (float)size_back.height;
-	bg->setScale(1.6f, 1.6f);    //缩放  
 	this->addChild(bg);
 	//add KeyboardListener
 	listenKeyboardEvent();

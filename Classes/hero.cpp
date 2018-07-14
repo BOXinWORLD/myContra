@@ -53,7 +53,7 @@ void Hero::down()
 {
 	this->removeAllChildren();
 	sp = Sprite::create("tex\\hero\\down.png");
-	sp->setAnchorPoint(Vec2(0.61f, 0.0f));//锚点定脚下 用于左右翻转
+	sp->setAnchorPoint(Vec2(0.6f, 0.0f));//锚点定脚下 用于左右翻转
 	sp->setScaleX(isLeft ? 1 : -1);
 	this->addChild(sp);
 }
@@ -66,7 +66,6 @@ void Hero::jump()
 	for (int i = 1; i < 4; i++) {
 		sprintf_s(txt, "tex\\hero\\jump000%d.png", i);
 		SpriteFrame *sf = SpriteFrame::create(txt, Rect(0, 0, 46, 46));
-		sf->setAnchorPoint(Vec2(0.3f, 0.38f));//不知道为何 动画偏移 强改锚点。。。。
 		allFrames.pushBack(sf);
 	}
 
@@ -82,7 +81,6 @@ void Hero::runAnimation()
 	for (int i = 2; i < 5; i++) {
 		sprintf_s(txt, "tex\\hero\\run_left000%d.png", i);
 		SpriteFrame *sf = SpriteFrame::create(txt, Rect(0, 0, 55, 55));
-		sf->setAnchorPoint(Vec2(0.39f, 0.38f));//不知道为何 动画偏移 强改锚点。。。。
 		allFrames.pushBack(sf);
 	}
 

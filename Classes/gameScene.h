@@ -18,6 +18,9 @@ public:
 
 	Hero* hero;
 	
+	Sprite* map;
+	float mapWidth;
+	float mapX;
 	//子弹处理
 	bool isFiring;
 	void fire();
@@ -40,6 +43,7 @@ public:
 
 	//判断出屏
 	bool outScreen(Node* n);
+	void hitTest();
 };
 
 #endif 

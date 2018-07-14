@@ -25,16 +25,14 @@ bool gameScene::init()
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 	//背景
-	auto bg = Sprite::create("tex\\bg.jpg");
-	bg->setAnchorPoint(Vec2(0, 0));
-	bg->setScale(1.6f, 1.6f);
-	this->addChild(bg);
+	map = Sprite::create("tex\\bg.jpg");
+	map->setAnchorPoint(Vec2(0, 0));
+	this->addChild(map);
 	//角色
 	hero = Hero::create();
 	hero->setPosition(120, 190);
-	hero->setScale(1.6f, 1.6f);
-	this->addChild(hero);
-
+	map->addChild(hero);
+	//显示按下按键代码
 	label = Label::createWithTTF("PRESS", "fonts/Marker Felt.ttf", 24);
 	label->setAnchorPoint(Vec2(0, 0));
 	label->setPosition(200, 20);
@@ -46,8 +44,11 @@ bool gameScene::init()
 	//敌人相关
 	maxBombman = 10;
 	bombmanCount = 0;
-
+	//地图边界
+	mapWidth = 1000;
+	//键盘监听
 	listenKeyboardEvent();
+	//主循环逻辑
 	this->scheduleUpdate();
 
 	return true;
@@ -56,25 +57,42 @@ bool gameScene::init()
 void gameScene::update(float dt)
 {
 	count++;
-
+	//英雄
 	hero->update(dt);
-
+	//地图滚动
+	float heroX = hero->getPositionX();
+	mapX = map->getPositionX();
+	float d = dt * 200;
+	if (mapX > 512 - mapWidth) {
+		if (heroX + mapX >= 256 && hero->keepRight) {
+			map->setPositionX(mapX - d);
+			hero->setPositionX(256 - mapX);
+		}
+	}
+	//边界判断
+	if (heroX + mapX < 10) {
+		hero->setPositionX(10 - mapX);
+	}
+	if (heroX + mapX > 502) {
+		hero->setPositionX(502 - mapX);
+	}
+	//射击
 	if (isFiring&& count % 8 == 0)fire();
 	moveBullets(dt);
-
+	//敌人生成
 	if (count % 90 == 0 && bombmanCount < maxBombman) newBmobman();
 	moveBombman(dt);
-
+	//击杀判断
+	hitTest();
 }
 //发射子弹
 void gameScene::fire()
 {
 	auto b = bullet::create();
-	b->setScale(1.6f, 1.6f);
 	b->radian = hero->isLeft ? PI : 0;
-	b->setPositionX(hero->getPositionX() + (hero->isLeft ? -32 : 32));
-	b->setPositionY(hero->getPositionY() + (hero->isDown ? 16 : 36));
-	addChild(b);
+	b->setPositionX(hero->getPositionX() + (hero->isLeft ? -29 : 29));
+	b->setPositionY(hero->getPositionY() + (hero->isDown ? 15 : 36));
+	map->addChild(b);
 	bullets.pushBack(b);
 }
 //移动子弹
@@ -92,15 +110,14 @@ void gameScene::moveBullets(float dt)
 	}
 }
 
-
+//敌人
 void gameScene::newBmobman()
 {
 	bombmanCount++;
 	auto bm = bombMan::create();
 	bm->setPosition(535, 190);
 	bm->setAnchorPoint(Vec2(0.5f, 0.0f));
-	bm->setScale(1.6f, 1.6f);
-	addChild(bm);
+	map->addChild(bm);
 	bombMen.pushBack(bm);
 
 }
@@ -115,6 +132,29 @@ void gameScene::moveBombman(float dt)
 			bm->removeFromParent();
 			bombMen.eraseObject(bm);
 			j--;
+		}
+	}
+}
+
+//击杀敌人
+void gameScene::hitTest() {
+	for (int i = 0; i < bullets.size(); i++)
+	{
+		auto b = bullets.at(i);
+		auto bRect = Rect(b->getPositionX(), b->getPositionY(), 10, 10);
+		for (int j = 0; j < bombMen.size(); j++)
+		{
+			auto bm = bombMen.at(j);
+			auto bmRect = Rect(bm->getPositionX(), bm->getPositionY(), 35, 48);
+			if (bRect.intersectsRect(bmRect))
+			{
+				b->removeFromParent();
+				bullets.eraseObject(b);
+				i--;
+				bm->removeFromParent();
+				bombMen.eraseObject(bm);
+				j--;	
+			}
 		}
 	}
 }
@@ -156,11 +196,11 @@ void gameScene::onKeyReleased2(EventKeyboard::KeyCode code, Event * evt)
 		break;
 	}
 }
-
+//出屏判定
 bool gameScene::outScreen(Node * n)
 {
-	if (n->getPositionX() < -20 || n->getPositionX() > 550 ||
-		n->getPositionY() < -20 || n->getPositionY() > 500)
+	if (n->getPositionX() < -20-mapX || n->getPositionX() > 550-mapX ||
+		n->getPositionY() < -20 || n->getPositionY() > 500 )
 		return true;
 	return false;
 }
